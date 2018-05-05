@@ -16,6 +16,7 @@
 - People read Fielding's dissertation (REST)
 
 <br>
+
 #### Let's write client side applications in JavaScript! 😎
 
 
@@ -27,6 +28,7 @@
 - React initial release
 
 <br>
+
 #### Interesting, but what is this Flux architecture again? 🤔
 
 
@@ -35,6 +37,7 @@
 - Redux initial release
 
 <br>
+
 #### Problem(s) solved &nbsp;🎉
 
 
@@ -43,4 +46,5 @@
 _“Can we render this JavaScript app on the server?”_
 
 <br>
-![](images/ok.gif)
+
+![](./images/ok.gif)
