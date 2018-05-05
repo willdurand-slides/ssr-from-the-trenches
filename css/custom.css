@@ -1,5 +1,13 @@
+h1 {
+    font-size: 2.77em!important;
+}
+
 h1, h2, h3, h4 {
     text-transform: none!important;
+}
+
+h2, h3 {
+    margin-bottom: 2rem!important;
 }
 
 .me {
@@ -16,8 +24,7 @@ h1, h2, h3, h4 {
     margin-left: 15px;
 }
 
-img.no-border,
-.no-border img {
+img {
     border: 0 !important;
     box-shadow: none !important;
     background: none !important;
@@ -28,3 +35,19 @@ img.no-border,
 }
 
 /* slide-deck specific below */
+.reveal blockquote {
+    border-top: 1px solid #134674;
+    box-shadow: none;
+    font-size: 0.8rem;
+    font-style: inherit;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.reveal blockquote p {
+    margin: 0.5rem auto;
+}
+
+del {
+    opacity: 0.6;
+}

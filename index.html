@@ -41,10 +41,47 @@
         <section data-markdown>
           <script type="text/template">
             # Server Side Rendering from the trenches
+
+            William Durand, jsDay 2018
           </script>
         </section>
 
+        <section data-markdown>
+          <script type="text/template">
+            # ⚠️
 
+            I am going to talk about server side rendering applied to
+            JavaScript applications and that are usually rendered in web
+            browsers, _i.e._ universal/isomorphic apps.
+          </script>
+        </section>
+
+        <section data-markdown="history.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"></section>
+        <section data-markdown="ssr.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"></section>
+        <section data-markdown="examples.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"></section>
+        <section data-markdown="addons-frontend.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:"></section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              # So what?
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## You may not need SSR.
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Other ideas
+
+              - Progressive Web Apps/Service workers
+              - [Headless Chrome: an answer to server-side rendering JS
+              sites](https://developers.google.com/web/tools/puppeteer/articles/ssr)
+            </script>
+          </section>
+        </section>
 
         <section data-markdown>
           <script type="text/template">
@@ -80,7 +117,7 @@
         progress: true,
         history: true,
         center: true,
-        slideNumber: !window.location.search.match(/print-pdf/gi),
+        slideNumber: 'c/t',
         transition: Reveal.getQueryHash().transition || 'concave',
 
         dependencies: [
