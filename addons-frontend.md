@@ -8,13 +8,14 @@ Some lessons learnt.
 
 ## Always be careful
 
-Undefined reference on the server == Error 500.
+Undefined reference on the server == Error 500. #GameOver
 
 
 ## Error handling is tough
 
 - Accurate HTTP status codes
 - Correct error pages
+- On both server and client
 
 
 ## Debugging made ~~easy~~ complex

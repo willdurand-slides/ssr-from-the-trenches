@@ -18,8 +18,7 @@ app.use((req, res) => {
     const context = {};
     // 1. Create the store.
     const store = configureStore();
-    // 2. Render the application using a `StaticRouter`,
-    // see: https://reacttraining.com/react-router/web/guides/server-rendering.
+    // 2. Render the application using a `StaticRouter`.
     const markup = renderToString(
       <Provider store={store}>
         <StaticRouter location={req.url} context={context}>
@@ -34,24 +33,19 @@ app.use((req, res) => {
 
 ```js
     if (context.url) {
-      // Somewhere a `<Redirect>` was rendered,
-      // let's redirect the user then.
-      redirect(301, context.url);
+      redirect(301, context.url); // A `<Redirect>` was rendered.
     } else {
       // Grab the initial state from our Redux store.
       const preloadedState = store.getState();
-
       const html = template
         .replace('__SSR__', markup)
         .replace('__PRELOADED_STATE__ = {}', [
-          `__PRELOADED_STATE__`,
-          `=`,
+          `__PRELOADED_STATE__ =`,
           JSON.stringify(preloadedState).replace(/</g, '\\u003c'),
         ].join(' '));
       }
 
-      // 3. Send the HTML to the client.
-      res.send(html);
+      res.send(html); // 3. Send the HTML to the client.
     }
   });
 });
