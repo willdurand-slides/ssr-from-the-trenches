@@ -125,7 +125,7 @@ class UsersList extends React.Component {
 
 ```js+vue
 <!-- UsersList.vue -->
-<template />
+<template></template>
 
 <script>
 export default {

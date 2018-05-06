@@ -1,9 +1,7 @@
 # Server Side Rendering
 
 
-## The big picture
-
-< Figure SSR >
+## The big picture<br>![](images/ssr.png)
 
 
 ## Benefits?

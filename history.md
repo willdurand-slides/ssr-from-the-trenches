@@ -21,7 +21,7 @@
 #### Let's write client side applications in JavaScript! 😎
 
 
-< Figure CSR >
+## Client Side Rendering<br>![](images/csr.png)
 
 
 ## 2013
