@@ -1,4 +1,4 @@
-# Examples
+# Some examples
 
 
 ## React
