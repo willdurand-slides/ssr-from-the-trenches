@@ -80,7 +80,7 @@ Then, the client loads the JavaScript app.
 There used to be two approaches...
 
 - static `async` method to fetch data and `Promise.all()` on the server
-- double rendering 💔
+- double render 💔
 
 
 ![](images/react-blog-post.png)

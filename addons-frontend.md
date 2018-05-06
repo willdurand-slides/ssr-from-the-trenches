@@ -11,32 +11,66 @@ Some lessons learnt.
 Undefined reference on the server == Error 500.
 
 
-## Security considerations
+## Error handling is tough
 
-- State serialization
-- Sensitive data on the server
-
-
-## Error handling
+- Accurate HTTP status codes
+- Correct error pages
 
 
 ## Debugging made ~~easy~~ complex
 
 - Isomorphic logging layer but no dev tools
-- `disableSSR` config option to the rescue
+- `disableSSR` config option to the rescue!
+    - but some issues are hidden
 
 
-## New fun bugs...
+### Server logs 😱
+
+```
+[...]
+INFO: proxy: 302 ~> http://127.0.0.1:3333/service-worker.js (app=amo)
+INFO: proxy: 200 ~> https://addons-dev.allizom.org/api/v3/accounts/account/mozilla/collections/privacy-matters/addons/?page=1&lang=en-US&wrap_outgoing_links=true (app=amo)
+INFO: proxy: 200 ~> https://addons-dev.allizom.org/api/v3/accounts/profile/?wrap_outgoing_links=true (app=amo)
+INFO: proxy: 200 ~> https://addons-dev.allizom.org/api/v3/accounts/account/mozilla/collections/trending-add-ons/addons/?page=1&lang=en-US&wrap_outgoing_links=true (app=amo)
+WARN: server: restrictSearchResultsToAppVersion config set; not setting "compatibleWithVersion" to current application version, even though it's above 57. (app=amo)
+WARN: server: restrictSearchResultsToAppVersion config set; not setting "compatibleWithVersion" to current application version, even though it's above 57. (app=amo)
+WARN: server: restrictSearchResultsToAppVersion config set; not setting "compatibleWithVersion" to current application version, even though it's above 57. (app=amo)
+INFO: proxy: 200 ~> https://addons-dev.allizom.org/api/v3/addons/search/?app=firefox&page_size=4&sort=rating&type=persona&lang=en-US&wrap_outgoing_links=true (app=amo)
+INFO: proxy: 200 ~> https://addons-dev.allizom.org/api/v3/addons/search/?app=firefox&page_size=4&sort=users&type=extension&lang=en-US&wrap_outgoing_links=true (app=amo)
+INFO: proxy: 200 ~> https://addons-dev.allizom.org/api/v3/addons/search/?app=firefox&featured=true&page_size=4&sort=random&type=extension&lang=en-US&wrap_outgoing_links=true (app=amo)
+INFO: server: Second component render after sagas have finished (app=amo)
+INFO: proxy: 200 ~> http://127.0.0.1:3333/en-US/firefox/ (app=amo)
+WARN: server: CSP has been disabled from the config (app=amo)
+INFO: server: Prepending lang to URL: en-US (app=amo)
+INFO: server: Prepending application to URL: firefox (app=amo)
+INFO: server: (app=amo, start=2018-05-06T14:47:55.020Z, finish=2018-05-06T14:47:55.021Z, elapsed=1, req.remoteAddress=127.0.0.1, req.remotePort=57189)
+```
+
+
+## New fun bugs 🤷‍♂️
+
+![](images/addon-server-client.png)
 
 ![](images/new-bug-back.png)
 
 
+### Example
+
 ![](images/new-bug-back.gif)
 
 
-## Fresh, isolated server context
+## Security considerations
+
+- State serialization
+- Sensitive data on the server, _e.g._, env vars
+
+
+## You must have a fresh, isolated server context
 
 ![](images/locale-leak.png)
+
+
+### Example
 
 ```shell
 $ repeat 10 curl https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/ -s \
@@ -57,7 +91,15 @@ updated</dt><dd data-reactid="194">2 days ago (Nov 6, 2017)</dd>
 
 ## React has useful dev warnings
 
+![](images/invariant-violation-server.png)
+
+TL;DR: React on the client does not generate the same HTML sent by the server:
+there is a bug.
+
 
 ## No random allowed
 
 ![](images/page-stuck.png)
+
+> There is a [React RFC for introducing isomorphic
+IDs](https://github.com/reactjs/rfcs/pull/32).
