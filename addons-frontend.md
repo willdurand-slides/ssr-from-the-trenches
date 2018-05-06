@@ -97,6 +97,15 @@ updated</dt><dd data-reactid="194">2 days ago (Nov 6, 2017)</dd>
 ```
 
 
+## You need more servers
+
+![](images/js-oom.png)
+
+_In order to reduce the # of 500 caused by the issue, we had to bump up the # of
+instances in the cluster from 8 to 40. And that eventually stopped the "heap
+oom" from continuously happening._
+
+
 ## React has useful dev warnings
 
 ![](images/invariant-violation-server.png)
