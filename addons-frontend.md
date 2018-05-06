@@ -1,6 +1,14 @@
-# addons.mozilla.org
+# Some lessons learnt
 
-Some lessons learnt.
+
+## addons.mozilla.org
+
+- Universal React/Redux app
+- i18n/l10n, CSP 👌
+- Open Source: [mozilla/addons-frontend](https://github.com/mozilla/addons-frontend)
+
+
+![](images/addons-frontend.png)
 
 
 ## Double render is a fragile hack, do not use it 😅
@@ -112,4 +120,7 @@ oom" from continuously happening._
 ![](images/invariant-violation-server.png)
 
 TL;DR: React on the client does not generate the same HTML sent by the server:
-there is a bug.
+there is a bug. [1]
+
+> [1]: [What’s New With Server-Side Rendering in React
+> 16](https://hackernoon.com/whats-new-with-server-side-rendering-in-react-16-9b0d78585d67)
