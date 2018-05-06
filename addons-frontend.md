@@ -59,6 +59,14 @@ INFO: server: (app=amo, start=2018-05-06T14:47:55.020Z, finish=2018-05-06T14:47:
 ![](images/new-bug-back.gif)
 
 
+## No random allowed
+
+![](images/page-stuck.png)
+
+> There is a [React RFC for introducing isomorphic
+IDs](https://github.com/reactjs/rfcs/pull/32).
+
+
 ## Security considerations
 
 - State serialization
@@ -95,11 +103,3 @@ updated</dt><dd data-reactid="194">2 days ago (Nov 6, 2017)</dd>
 
 TL;DR: React on the client does not generate the same HTML sent by the server:
 there is a bug.
-
-
-## No random allowed
-
-![](images/page-stuck.png)
-
-> There is a [React RFC for introducing isomorphic
-IDs](https://github.com/reactjs/rfcs/pull/32).
