@@ -1,14 +1,14 @@
 # Some lessons learnt
 
 
+![](images/addons-frontend.png)
+
+
 ## addons.mozilla.org
 
 - Universal React/Redux app
 - i18n/l10n, CSP 👌
 - Open Source: [mozilla/addons-frontend](https://github.com/mozilla/addons-frontend)
-
-
-![](images/addons-frontend.png)
 
 
 ## Double render is a fragile hack, do not use it 😅
@@ -78,8 +78,11 @@ IDs](https://github.com/reactjs/rfcs/pull/32).
 
 ## Security considerations
 
-- State serialization
+- State serialization when transferring the Redux state from the
+  server to the client [1]
 - Sensitive data on the server, _e.g._, env vars
+
+> [1]: [Redux Server Rendering](https://redux.js.org/recipes/server-rendering#security-considerations)
 
 
 ## You must have a fresh, isolated server context
@@ -115,7 +118,7 @@ instances in the cluster from 8 to 40. And that eventually stopped the "heap
 oom" from continuously happening._
 
 
-## React has useful dev warnings
+## React has useful<br>dev warnings
 
 ![](images/invariant-violation-server.png)
 

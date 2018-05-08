@@ -16,28 +16,19 @@ On every incoming request, the server:
 Then, the client loads the JavaScript app.
 
 
-## What no one tells you
-
-- Redirects should be intercepted
-- Errors should be handled
-- Data must be fetched on the server
-- App state must be sent to the client
-
-
 ## Benefits?
 
 - Accessibility (limited)
 - Better performances (first meaningful paint)
-- Better user experience
-- Search Engine Optimization
-- Social sharing (hello bots)
+- Better user experience (JS disabled)
+- Search Engine Optimization/Social sharing
 
 
 ### Googlebot
 
 - Quite good at browsing JS apps
 - Give up after ~10 seconds
-- Issues with `react-router`
+- Some issues with `react-router`
 
 > Source: [Testing a React-driven website’s SEO using “Fetch as
 > Google”](https://medium.freecodecamp.org/using-fetch-as-google-for-seo-experiments-with-react-driven-websites-914e0fc3ab1),
@@ -62,18 +53,23 @@ Then, the client loads the JavaScript app.
 ## Why is it so complicated?
 
 1. Two different environments, one codebase
-2. Data fetching **before** rendering
-3. Cookies, redirects, HTTP statuses, Redux state
+2. Cookies, redirects/errors, HTTP statuses
+3. Data fetching **before** rendering
 
 
 ### 1. Two different environments,<br>one codebase
 
 ![](images/babel.jpg)
 
-&plus; "isomorphic" libraries and polyfills
+&plus; **isomorphic libraries** and polyfills
 
 
-### 2. Data fetching **before** rendering
+### 2. Cookies, redirects/errors,<br>HTTP statuses
+
+You have to find ~~hacks~~ nice tricks 👻
+
+
+### 3. Data fetching **before** rendering
 
 There used to be two approaches...
 
@@ -82,15 +78,3 @@ There used to be two approaches...
 
 
 ![](images/react-blog-post.png)
-
-
-More on data fetching in a few minutes.
-
-
-### 3. Cookies, redirects,<br>HTTP statuses, Redux state
-
-- You have to find ~~hacks~~ nice tricks
-- Security considerations, _e.g._, when transferring the Redux state from the
-  server to the client [1]
-
-> [1]: [Redux Server Rendering](https://redux.js.org/recipes/server-rendering#security-considerations)
