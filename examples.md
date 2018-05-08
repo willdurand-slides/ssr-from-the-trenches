@@ -11,63 +11,62 @@
 
 ```js
 // server.js (express app)
-app.use((req, res) => {
-  const indexHtml = path.resolve(__dirname, '..', 'build', 'index.html');
 
-  fs.readFile(indexHtml, 'utf8', (err, template) => {
-    const context = {};
-    // 1. Create the store.
-    const store = configureStore();
-    // 2. Render the application using a `StaticRouter`.
-    const markup = renderToString(
-      <Provider store={store}>
-        <StaticRouter location={req.url} context={context}>
-          <App />
-        </StaticRouter>
-      </Provider>
-    );
+app.use((req, res) => {
+  const context = {};
+  // 1. Create the store.
+  const store = configureStore();
+  // 2. Render the application using a `StaticRouter`.
+  const markup = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </Provider>
+  );
+  // see next slide...
 ```
+Load the application
 
 
 ### Naive example (2/4)
 
 ```js
-    if (context.url) {
-      redirect(301, context.url); // A `<Redirect>` was rendered.
-    } else {
-      // Grab the initial state from our Redux store.
-      const preloadedState = store.getState();
-      const html = template
-        .replace('__SSR__', markup)
-        .replace('__PRELOADED_STATE__ = {}', [
-          `__PRELOADED_STATE__ =`,
-          JSON.stringify(preloadedState).replace(/</g, '\\u003c'),
-        ].join(' '));
-      }
-
-      res.send(html); // 3. Send the HTML to the client.
+  if (context.url) {
+    redirect(301, context.url); // A `<Redirect>` was rendered.
+  } else {
+    // 3. Replace placeholders by generated state and HTML.
+    const preloadedState = store.getState();
+    const html = INDEX_HTML
+      .replace('__SSR__', markup)
+      .replace('__PRELOADED_STATE__ = {}', [
+        `__PRELOADED_STATE__ =`,
+        JSON.stringify(preloadedState).replace(/</g, '\\u003c'),
+      ].join(' '));
     }
+    res.send(html); // 4. Send the HTML to the client.
   });
 });
 ```
+Send the full HTML to the client
 
 
 ### Naive example (3/4)
 
 ``` diff
-     <!-- index.html -->
+     <!-- index.html [...] -->
+
      <noscript>
        You need to enable JavaScript to run this app.
      </noscript>
 -    <div id="root"></div>
 +    <div id="root">__SSR__</div>
 +    <script>
-+      // WARNING: See the following for security issues around embedding JSON in HTML:
-+      // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
 +      window.__PRELOADED_STATE__ = {};
 +    </script>
    </body>
 ```
+Add placeholders in the `index.html`
 
 
 ### Naive example (4/4)
@@ -82,6 +81,7 @@ app.use((req, res) => {
 +
 +const store = configureStore(preloadedState);
 ```
+Use the state generated on the server, if any
 
 
 ### But...
@@ -92,8 +92,7 @@ app.use((req, res) => {
 
 ## Next.js
 
-Powerful React-based [framework](https://github.com/zeit/next.js), support
-Redux.
+Powerful React-based [framework](https://github.com/zeit/next.js), SSR-ready.
 
 ```js
 class UsersList extends React.Component {

@@ -76,15 +76,6 @@ INFO: server: (app=amo, start=2018-05-06T14:47:55.020Z, finish=2018-05-06T14:47:
 IDs](https://github.com/reactjs/rfcs/pull/32).
 
 
-## Security considerations
-
-- State serialization when transferring the Redux state from the
-  server to the client [1]
-- Sensitive data on the server, _e.g._, env vars
-
-> [1]: [Redux Server Rendering](https://redux.js.org/recipes/server-rendering#security-considerations)
-
-
 ## You must have a fresh, isolated server context
 
 ![](images/locale-leak.png)
@@ -118,6 +109,15 @@ instances in the cluster from 8 to 40. And that eventually stopped the "heap
 oom" from continuously happening._
 
 
+## Security considerations
+
+- State serialization when transferring the Redux state from the
+  server to the client [1]
+- Sensitive data on the server, _e.g._, env vars
+
+> [1]: [Redux Server Rendering](https://redux.js.org/recipes/server-rendering#security-considerations)
+
+
 ## React has useful<br>dev warnings
 
 ![](images/invariant-violation-server.png)
@@ -127,3 +127,6 @@ there is a bug. [1]
 
 > [1]: [What’s New With Server-Side Rendering in React
 > 16](https://hackernoon.com/whats-new-with-server-side-rendering-in-react-16-9b0d78585d67)
+
+
+## We can test (pretty much) everything 🚀

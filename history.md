@@ -35,6 +35,7 @@
 
 ## 2015
 
+- Vue.js is 1 year old
 - Redux initial release
 
 <br>
